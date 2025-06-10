@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Калькулятор на Vuetify</title>
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<v-app>
+				<v-main>
+					<v-container class="fill-height" fluid>
+						<v-row align="center" justify="center">
+							<v-col cols="12" sm="8" md="6">
+								<v-card class="calculator">
+									<v-card-text class="expression">{{ expression }}</v-card-text>
+									<v-card-text class="display"
+										>{{ displayValue || '0' }}</v-card-text
+									>
+									<v-card-actions>
+										<v-row>
+											<v-col cols="12">
+												<v-row>
+													<v-col cols="3" v-for="n in [7,8,9,'/']" :key="n">
+														<v-btn
+															block
+															@click="append(n)"
+															:class="{ 'operation-btn': ['/','*','-','+'].includes(n) }"
+														>
+															{{ n }}
+														</v-btn>
+													</v-col>
+												</v-row>
+												<v-row>
+													<v-col cols="3" v-for="n in [4,5,6,'*']" :key="n">
+														<v-btn
+															block
+															@click="append(n)"
+															:class="{ 'operation-btn': ['/','*','-','+'].includes(n) }"
+														>
+															{{ n }}
+														</v-btn>
+													</v-col>
+												</v-row>
+												<v-row>
+													<v-col cols="3" v-for="n in [1,2,3,'-']" :key="n">
+														<v-btn
+															block
+															@click="append(n)"
+															:class="{ 'operation-btn': ['/','*','-','+'].includes(n) }"
+														>
+															{{ n }}
+														</v-btn>
+													</v-col>
+												</v-row>
+												<v-row>
+													<v-col cols="3">
+														<v-btn block @click="clear" class="clear-btn"
+															>C</v-btn
+														>
+													</v-col>
+													<v-col cols="3">
+														<v-btn block @click="append(0)">0</v-btn>
+													</v-col>
+													<v-col cols="3">
+														<v-btn block @click="append('.')">.</v-btn>
+													</v-col>
+													<v-col cols="3">
+														<v-btn
+															block
+															@click="append('+')"
+															class="operation-btn"
+															>+</v-btn
+														>
+													</v-col>
+												</v-row>
+												<v-row>
+													<v-col cols="12">
+														<v-btn
+															block
+															@click="calculate"
+															class="equals-btn"
+															large
+															>=</v-btn
+														>
+													</v-col>
+												</v-row>
+											</v-col>
+										</v-row>
+									</v-card-actions>
+								</v-card>
+							</v-col>
+						</v-row>
+					</v-container>
+				</v-main>
+			</v-app>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
